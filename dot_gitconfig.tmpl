@@ -1,0 +1,16 @@
+[user]
+	email = {{ .email | quote }}
+	name = Dustin Brewer
+[fetch]
+	prune = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[core]
+	excludesfile = ~/.gitignore
+[alias]
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	patch-date = "!f() { SHA=`git rev-parse \"$1\"`; GIT_COMMITTER_DATE=\"$2\"; git rebase -i $SHA~1; GIT_COMMITTER_DATE=\"$2\" git commit --amend --date \"$2\"; git rebase --continue; }; f"

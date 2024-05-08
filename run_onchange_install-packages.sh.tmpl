@@ -1,0 +1,15 @@
+#!/bin/sh
+echo "Installing MISE"
+curl https://mise.run | sh
+~/.local/bin/mise --version
+
+{{ if eq .chezmoi.os "linux" -}}
+echo "Linux"
+{{ else if eq .chezmoi.os "darwin" -}}
+# Brewfile hash: {{ include "dot_config/Brewfile.tmpl" | sha256sum }}
+echo "MacOS"
+if command -v brew &> /dev/null
+then
+    brew bundle --file=~/.config/Brewfile
+fi
+{{ end -}}

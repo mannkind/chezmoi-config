@@ -1,0 +1,34 @@
+tap "homebrew/cask-fonts"
+
+brew "jq"
+brew "watch"
+brew "wget"
+brew "yq"
+
+cask "1password"
+cask "camo-studio"
+cask "docker"
+cask "font-jetbrains-mono"
+cask "iterm2"
+cask "keepingyouawake"
+cask "maccy"
+cask "muzzle"
+cask "rectangle"
+cask "slack"
+cask "the-unarchiver"
+cask "visual-studio-code"
+
+{{- if eq .chezmoi.hostname "ganymede" }}
+brew "age"
+brew "sops"
+
+cask "krita"
+cask "openscad"
+cask "prusaslicer"
+cask "signal"
+cask "vlc"
+{{- end }}
+
+{{- if eq .chezmoi.hostname "DB-Q2C955605G" }}
+cask "zoom"
+{{- end }}

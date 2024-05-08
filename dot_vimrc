@@ -1,0 +1,42 @@
+set autoindent          " always set autoindenting on set autowrite
+                        " auto saves changes when quitting and swiching buffer
+set background=dark
+set encoding=utf-8
+set expandtab
+set foldmethod=marker   " use typed folding
+set history=500
+set hlsearch            " highlight searches
+set ignorecase          " ignore case when searching
+set incsearch           " do incremental searching
+set listchars=eol:¶,tab:>-,trail:- " Show EOL, Tabs, and Trailing Spaces
+set ls=2                " always show status line
+set modeline            " last lines in document sets vim mode
+set modelines=3         " number lines checked for modelines
+set nobackup            " do not keep a backup file
+set nocindent
+set nocompatible        " We're running Vim, not Vi!
+set nostartofline       " don't jump to first character when paging
+set novisualbell        " turn off visual bell
+set nowrap              " don't wrap lines
+set number
+set ruler               " show the cursor position all the time
+set scrolloff=10        " keep 10 lines when scrolling
+set shiftwidth=4        " numbers of spaces to (auto)indent
+set shortmess=atI       " Abbreviate messages
+set showcmd             " display incomplete commands
+set sm                  " show matching braces, somewhat annoying...
+set smartindent         " smart indent
+set t_Co=256            " enable 256-color support http://www.alfredrossi.com/?p=49
+set tabpagemax=100      " 100 max tabs open
+set tabstop=2           " numbers of spaces of tab character
+set textwidth=110
+set title               " show title in console title bar
+set ttyfast             " smoother changes
+set ttymouse=xterm2
+set visualbell t_vb=    " turn off error beep/flash
+
+filetype on             " Enable filetype detection
+filetype indent on      " Enable filetype-specific indenting
+filetype plugin on      " Enable filetype-specific plugins
+
+syntax on               " Enable syntax highlighting

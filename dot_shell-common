@@ -1,0 +1,25 @@
+# Set Path
+export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin/:$PATH
+export GPG_TTY=$(tty)
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Sourcing
+test -r $HOME/.asdf/asdf.sh && . $HOME/.asdf/asdf.sh
+
+# Aliases
+alias typeless="history 20000 | sed \"s/.*  //\"  | sort | uniq -c | sort -g | tail -n 100"
+alias cdt="cd \$(mktemp -d)"
+## Git
+alias gbc="git branch --merged | egrep -v \"(^\*|master|main|dev)\" | xargs git branch -d"
+## Terraform
+alias ti="terraform init"
+alias tp="terraform plan"
+alias ta="terraform apply"
+alias twl="terraform workspace list"
+alias tws="terraform workspace select"
+## AWS
+alias ssm-ue1="aws ssm start-session --region us-east-1 --target"
+alias ssm-ue2="aws ssm start-session --region us-east-2 --target"
+alias ssm-uw2="aws ssm start-session --region us-west-2 --target"
+alias ecr-docker-login="aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 245145356204.dkr.ecr.us-east-2.amazonaws.com"
+alias ecr-docker-pull='f(){ docker pull 245145356204.dkr.ecr.us-east-2.amazonaws.com/$1; unset -f f; }; f'

@@ -1,0 +1,6 @@
+.oh-my-zsh
+.devcontainer
+.vscode
+.envrc
+.tool-versions
+.DS_Store

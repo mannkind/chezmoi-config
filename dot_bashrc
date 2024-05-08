@@ -1,0 +1,6 @@
+# Common between shells
+test -r ~/.shell-common && . ~/.shell-common
+export PS1="\[\e[1;36m\]\w\n\[\e[0;37m\]<\[\e[36m\]\u\[\e[0m\]@\[\e[0;33m\]\h\[\e[0m\]\[\e[0m\e[1;34m\] $\[\e[37m\]>\[\e[0m\]"
+if [[ -e ~/.local/bin/mise ]]; then
+    eval "$(~/.local/bin/mise activate bash)"
+fi
