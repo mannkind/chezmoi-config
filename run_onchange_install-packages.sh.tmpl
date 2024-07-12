@@ -12,4 +12,16 @@ if command -v brew &> /dev/null
 then
     brew bundle --file=~/.config/Brewfile
 fi
+
+# Setup docker compatibility
+if command -v podman &> /dev/null
+then
+  echo "Found podman. Setting up docker-compatibility. Will require sudo"
+  f=$(mktemp)
+  echo \#\!/bin/sh > $f
+  echo exec podman \"\$@\" >> $f
+  chmod +x $f
+  sudo mv $f /usr/local/bin/docker
+fi
+
 {{ end -}}

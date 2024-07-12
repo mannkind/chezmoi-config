@@ -1,4 +1,5 @@
 tap "homebrew/cask-fonts"
+cask "font-jetbrains-mono"
 
 brew "jq"
 brew "watch"
@@ -6,29 +7,30 @@ brew "wget"
 brew "yq"
 
 cask "1password"
-cask "camo-studio"
-cask "docker"
-cask "font-jetbrains-mono"
 cask "iterm2"
 cask "keepingyouawake"
 cask "maccy"
-cask "muzzle"
 cask "rectangle"
 cask "slack"
 cask "the-unarchiver"
 cask "visual-studio-code"
+cask "zoom"
 
 {{- if eq .chezmoi.hostname "ganymede" }}
 brew "age"
+brew "k3sup"
+brew "podman"
 brew "sops"
 
+cask "anki"
+cask "kopiaui"
 cask "krita"
 cask "openscad"
+cask "podman-desktop"
 cask "prusaslicer"
 cask "signal"
 cask "vlc"
 {{- end }}
 
 {{- if eq .chezmoi.hostname "DB-Q2C955605G" }}
-cask "zoom"
 {{- end }}
