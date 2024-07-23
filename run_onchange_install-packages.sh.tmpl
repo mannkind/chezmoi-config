@@ -1,4 +1,5 @@
 #!/bin/sh
+
 echo "Installing MISE"
 curl https://mise.run | sh
 ~/.local/bin/mise --version
@@ -13,15 +14,7 @@ then
     brew bundle --file=~/.config/Brewfile
 fi
 
-# Setup docker compatibility
-if command -v podman &> /dev/null
-then
-  echo "Found podman. Setting up docker-compatibility. Will require sudo"
-  f=$(mktemp)
-  echo \#\!/bin/sh > $f
-  echo exec podman \"\$@\" >> $f
-  chmod +x $f
-  sudo mv $f /usr/local/bin/docker
-fi
+{{- if eq .chezmoi.hostname "M6T99NMinBrewer" }}
+{{- end }}
 
 {{ end -}}

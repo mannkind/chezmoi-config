@@ -1,4 +1,3 @@
-tap "homebrew/cask-fonts"
 cask "font-jetbrains-mono"
 
 brew "jq"
@@ -6,31 +5,36 @@ brew "watch"
 brew "wget"
 brew "yq"
 
-cask "1password"
 cask "iterm2"
-cask "keepingyouawake"
-cask "maccy"
-cask "rectangle"
-cask "slack"
 cask "the-unarchiver"
 cask "visual-studio-code"
-cask "zoom"
 
-{{- if eq .chezmoi.hostname "ganymede" }}
+{{- if eq .chezmoi.hostname "Dustins-MacBook-Pro" }}
 brew "age"
 brew "k3sup"
-brew "podman"
 brew "sops"
 
+cask "1password"
 cask "anki"
+cask "dbeaver-community"
+cask "docker"
+cask "keepingyouawake"
 cask "kopiaui"
 cask "krita"
+cask "maccy"
 cask "openscad"
-cask "podman-desktop"
 cask "prusaslicer"
+cask "rectangle"
 cask "signal"
+cask "slack"
 cask "vlc"
+cask "zoom"
 {{- end }}
 
-{{- if eq .chezmoi.hostname "DB-Q2C955605G" }}
+{{- if eq .chezmoi.hostname "M6T99NMinBrewer" }}
+brew "postgresql"
+brew "pass"
+brew "testkube"
+cask "dbeaver-community"
+cask "postman"
 {{- end }}

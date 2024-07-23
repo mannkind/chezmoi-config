@@ -6,6 +6,14 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # Sourcing
 test -r $HOME/.asdf/asdf.sh && . $HOME/.asdf/asdf.sh
 
+# Colima/Docker compatibility
+if command -v colima > /dev/null
+then
+    export COLIMA_VM="default"
+    export COLIMA_VM_SOCKET="${HOME}/.colima/${COLIMA_VM}/docker.sock"
+    export DOCKER_HOST="unix://${COLIMA_VM_SOCKET}"
+fi
+
 # Aliases
 alias typeless="history 20000 | sed \"s/.*  //\"  | sort | uniq -c | sort -g | tail -n 100"
 alias cdt="cd \$(mktemp -d)"
@@ -21,5 +29,16 @@ alias tws="terraform workspace select"
 alias ssm-ue1="aws ssm start-session --region us-east-1 --target"
 alias ssm-ue2="aws ssm start-session --region us-east-2 --target"
 alias ssm-uw2="aws ssm start-session --region us-west-2 --target"
-alias ecr-docker-login="aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 245145356204.dkr.ecr.us-east-2.amazonaws.com"
-alias ecr-docker-pull='f(){ docker pull 245145356204.dkr.ecr.us-east-2.amazonaws.com/$1; unset -f f; }; f'
+
+{{- if eq .chezmoi.hostname "M6T99NMinBrewer" }}
+# Workstation specific
+function ggo-stg-pw() {
+  db=$1
+  ggo db -e stg json $db | jq '"username = \(.data.username)", "password = \(.data.password)"'
+}
+function ggo-prod-pw() {
+  db=$1
+  ggo db -e prod json $db | jq '"username = \(.data.username)", "password = \(.data.password)"'
+}
+
+{{- end }}

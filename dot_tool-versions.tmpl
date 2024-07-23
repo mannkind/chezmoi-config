@@ -4,8 +4,9 @@ kubectl 1.23.6
 golang 1.20.14
 nodejs 21.7.3
 terraform 1.5.7
-{{- if ne .chezmoi.hostname "DB-Q2C955605G" }}
+opentofu 1.6.2
+python 3.12.4
+{{- if eq .chezmoi.hostname "Dustins-MacBook-Pro" }}
 dotnet 8.0.100
 pulumi 3.111.1
-opentofu 1.6.2
 {{- end }}
