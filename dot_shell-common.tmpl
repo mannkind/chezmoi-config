@@ -4,17 +4,12 @@
 export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin/:$PATH
 export GPG_TTY=$(tty)
 export HOMEBREW_NO_AUTO_UPDATE=1
-
-# Sourcing
-test -r $HOME/.asdf/asdf.sh && . $HOME/.asdf/asdf.sh
-
-# Colima/Docker compatibility
-if command -v colima > /dev/null
-then
-    export COLIMA_VM="default"
-    export COLIMA_VM_SOCKET="${HOME}/.colima/${COLIMA_VM}/docker.sock"
-    export DOCKER_HOST="unix://${COLIMA_VM_SOCKET}"
+{{- if eq $computerName "M6T99NMHQ0 Dustin Brewer" }}
+# GoGoDB
+if [[ -e ~/.gogo/bin ]]; then
+    export PATH="/Users/mannkind/.gogo/bin:${PATH}"
 fi
+{{- end }}
 
 # Aliases
 alias typeless="history 20000 | sed \"s/.*  //\"  | sort | uniq -c | sort -g | tail -n 100"
@@ -34,12 +29,9 @@ alias ssm-uw2="aws ssm start-session --region us-west-2 --target"
 
 {{- if eq $computerName "M6T99NMHQ0 Dustin Brewer" }}
 # Workstation specific
-function ggo-stg-pw() {
-  db=$1
-  ggo db -e stg json $db | jq '"username = \(.data.username)", "password = \(.data.password)"'
-}
-function ggo-prod-pw() {
-  db=$1
-  ggo db -e prod json $db | jq '"username = \(.data.username)", "password = \(.data.password)"'
+function dbeaver() {
+  env=$1
+  db=$2
+  /Users/mannkind/.gogo/bin/ggo db -e $env shell -m /Applications/DBeaver.app/Contents/MacOS/dbeaver $db
 }
 {{- end }}

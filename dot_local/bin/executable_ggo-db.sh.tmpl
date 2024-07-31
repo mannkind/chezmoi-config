@@ -1,0 +1,9 @@
+{{- $computerName := output "scutil" "--get" "ComputerName" | trim }}
+{{- if ne $computerName "M6T99NMHQ0 Dustin Brewer" }}
+echo "Doesn't make sense to have this file"
+{{- end }}
+{{- if eq $computerName "M6T99NMHQ0 Dustin Brewer" }}
+env=$1
+db=$2
+/Users/mannkind/.gogo/bin/ggo db -e $env json $db | /opt/homebrew/bin/jq -jr '.data.username,"|",.data.password' | /usr/bin/pbcopy
+{{- end }}
