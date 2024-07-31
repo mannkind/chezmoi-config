@@ -1,3 +1,5 @@
+{{- $computerName := output "scutil" "--get" "ComputerName" | trim }}
+
 cask "font-jetbrains-mono"
 
 brew "jq"
@@ -9,7 +11,7 @@ cask "iterm2"
 cask "the-unarchiver"
 cask "visual-studio-code"
 
-{{- if eq .chezmoi.hostname "Dustins-MacBook-Pro" }}
+{{- if eq $computerName "Dustin's MacBook Pro" }}
 brew "age"
 brew "k3sup"
 brew "sops"
@@ -31,7 +33,7 @@ cask "vlc"
 cask "zoom"
 {{- end }}
 
-{{- if eq .chezmoi.hostname "M6T99NMinBrewer" }}
+{{- if eq $computerName "M6T99NMHQ0 Dustin Brewer" }}
 brew "postgresql"
 brew "pass"
 brew "testkube"

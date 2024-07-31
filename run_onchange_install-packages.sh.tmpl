@@ -1,5 +1,6 @@
 #!/bin/sh
 
+{{- $computerName := output "scutil" "--get" "ComputerName" | trim }}
 echo "Installing MISE"
 curl https://mise.run | sh
 ~/.local/bin/mise --version
@@ -14,7 +15,7 @@ then
     brew bundle --file=~/.config/Brewfile
 fi
 
-{{- if eq .chezmoi.hostname "M6T99NMinBrewer" }}
+{{- if eq $computerName "M6T99NMHQ0 Dustin Brewer" }}
 {{- end }}
 
 {{ end -}}

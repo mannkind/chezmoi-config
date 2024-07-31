@@ -1,3 +1,5 @@
+{{- $computerName := output "scutil" "--get" "ComputerName" | trim }}
+
 # Set Path
 export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin/:$PATH
 export GPG_TTY=$(tty)
@@ -30,7 +32,7 @@ alias ssm-ue1="aws ssm start-session --region us-east-1 --target"
 alias ssm-ue2="aws ssm start-session --region us-east-2 --target"
 alias ssm-uw2="aws ssm start-session --region us-west-2 --target"
 
-{{- if eq .chezmoi.hostname "M6T99NMinBrewer" }}
+{{- if eq $computerName "M6T99NMHQ0 Dustin Brewer" }}
 # Workstation specific
 function ggo-stg-pw() {
   db=$1
@@ -40,5 +42,4 @@ function ggo-prod-pw() {
   db=$1
   ggo db -e prod json $db | jq '"username = \(.data.username)", "password = \(.data.password)"'
 }
-
 {{- end }}
