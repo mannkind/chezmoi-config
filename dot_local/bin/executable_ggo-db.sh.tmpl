@@ -3,7 +3,19 @@
 echo "Doesn't make sense to have this file"
 {{- end }}
 {{- if eq $computerName "M6T99NMHQ0 Dustin Brewer" }}
+PATH=$PATH:/opt/homebrew/bin/
 env=$1
 db=$2
-/Users/mannkind/.gogo/bin/ggo db -e $env json $db | /opt/homebrew/bin/jq -jr '.data.username,"|",.data.password' | /usr/bin/pbcopy
+echo "Establishing connection to $db ($env)"
+/Users/mannkind/.gogo/bin/ggo db -e $env json $db | /opt/homebrew/bin/jq -jr '.d
+echo "\tFetched username"
+echo "\tSleeping"
+sleep 3
+/Users/mannkind/.gogo/bin/ggo db -e $env json $db | /opt/homebrew/bin/jq -jr '.d
+echo "\tFetched password"
+echo "\tSleeping"
+sleep 3
+echo "\tClearing clipboard"
+echo "" | pbcopy
+echo "Established connection to $db ($env)"
 {{- end }}
