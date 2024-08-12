@@ -6,16 +6,22 @@ echo "Doesn't make sense to have this file"
 PATH=$PATH:/opt/homebrew/bin/
 env=$1
 db=$2
+echo "Disabling clipboard events"
+defaults write org.p0deje.Maccy ignoreEvents true
+
 echo "Establishing connection to $db ($env)"
-/Users/mannkind/.gogo/bin/ggo db -e $env json $db | /opt/homebrew/bin/jq -jr '.d
+/Users/mannkind/.gogo/bin/ggo db -e $env json $db | /opt/homebrew/bin/jq -jr '.data.username' | /usr/bin/pbcopy
 echo "\tFetched username"
 echo "\tSleeping"
 sleep 3
-/Users/mannkind/.gogo/bin/ggo db -e $env json $db | /opt/homebrew/bin/jq -jr '.d
+/Users/mannkind/.gogo/bin/ggo db -e $env json $db | /opt/homebrew/bin/jq -jr '.data.password' | /usr/bin/pbcopy
 echo "\tFetched password"
 echo "\tSleeping"
 sleep 3
 echo "\tClearing clipboard"
-echo "" | pbcopy
+echo "" | /usr/bin/pbcopy
 echo "Established connection to $db ($env)"
+
+echo "Enabling clipboard events"
+defaults write org.p0deje.Maccy ignoreEvents false
 {{- end }}
