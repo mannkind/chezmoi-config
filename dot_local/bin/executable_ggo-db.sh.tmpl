@@ -8,6 +8,14 @@ env=$1
 db=$2
 echo "Disabling clipboard events"
 defaults write org.p0deje.Maccy ignoreEvents true
+function finish {
+  echo "Clearing clipboard"
+  echo "" | /usr/bin/pbcopy
+
+  echo "Enabling clipboard events"
+  defaults write org.p0deje.Maccy ignoreEvents false
+}
+trap finish EXIT
 
 echo "Establishing connection to $db ($env)"
 /Users/mannkind/.gogo/bin/ggo db -e $env json $db | /opt/homebrew/bin/jq -jr '.data.username' | /usr/bin/pbcopy
@@ -17,11 +25,7 @@ sleep 3
 /Users/mannkind/.gogo/bin/ggo db -e $env json $db | /opt/homebrew/bin/jq -jr '.data.password' | /usr/bin/pbcopy
 echo "\tFetched password"
 echo "\tSleeping"
-sleep 3
-echo "\tClearing clipboard"
-echo "" | /usr/bin/pbcopy
+sleep 5
 echo "Established connection to $db ($env)"
 
-echo "Enabling clipboard events"
-defaults write org.p0deje.Maccy ignoreEvents false
 {{- end }}
