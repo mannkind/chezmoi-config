@@ -34,4 +34,9 @@ function dbeaver() {
   db=$2
   /Users/mannkind/.gogo/bin/ggo db -e $env shell -m /Applications/DBeaver.app/Contents/MacOS/dbeaver $db
 }
+
+## Aliases
+alias partner-start="echo 'y' | ./go nuk; echo 'y' | docker system prune; ./go; ./go migrate development; ./go start dev"
+alias partner-test="echo 'y' | ./go nuke; ./go full_tests"
+alias partner-api-start="echo 'y' | ./go nuke; echo 'y' | docker system prune; ./go dev"
 {{- end }}
